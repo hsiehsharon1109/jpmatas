@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#080810">
+<title>Japó 2026 · Família</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" async></script>
+<style>
+:root{--bg:#080810;--s1:rgba(255,255,255,0.05);--s2:#13131f;--bd:rgba(255,255,255,0.08);--mu:rgba(255,255,255,0.4);--go:#c9a84c;--re:#c0392b;--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px)}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#080810;color:#fff;font-family:'Zen Kaku Gothic New',sans-serif;overflow:hidden}
+#app{display:flex;flex-direction:column;height:100%;max-width:430px;margin:0 auto;background:#080810}
+#pg{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;background:#080810}
+#pg::-webkit-scrollbar{display:none}
+#nv{flex-shrink:0;display:flex;background:rgba(8,8,16,0.97);border-top:1px solid var(--bd);padding:8px 0 calc(8px + var(--sb));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;border:none;background:none;cursor:pointer;padding:6px 4px}
+.ni{font-size:20px;line-height:1;filter:grayscale(1);opacity:.35;transition:all .2s}
+.nl{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);transition:color .15s}
+.nb.on .ni{filter:grayscale(0);opacity:1;transform:scale(1.1)}
+.nb.on .nl{color:var(--go)}
+.ph{padding:calc(var(--st) + 52px) 20px 16px;background:#080810;position:sticky;top:0;z-index:30;border-bottom:1px solid var(--bd)}
+.pt{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:700;color:#fff}
+.ps{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mu);margin-bottom:6px}
+.card{background:var(--s1);border-radius:12px;border:1px solid var(--bd);overflow:hidden}
+.tap{cursor:pointer;transition:background .15s}.tap:active{background:rgba(255,255,255,0.09)}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 8px;border-radius:4px;text-transform:uppercase}
+.mb{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:flex-end;justify-content:center}
+.ms{width:100%;max-width:430px;max-height:92vh;background:var(--s2);border-radius:20px 20px 0 0;overflow:hidden;display:flex;flex-direction:column;animation:su .28s ease;color:#fff}
+.mh{display:flex;justify-content:center;padding:10px 0 0;flex-shrink:0}
+.mhb{width:40px;height:4px;border-radius:2px;background:rgba(255,255,255,.15)}
+.msc{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 20px 40px;background:var(--s2)}
+.msc::-webkit-scrollbar{display:none}
+.mtb{display:flex;gap:6px;margin:14px 20px 0}
+.mt{flex:1;padding:9px 4px;border:none;border-radius:8px;cursor:pointer;font-size:11px;font-weight:600;font-family:'Zen Kaku Gothic New',sans-serif;background:rgba(255,255,255,.05);color:rgba(255,255,255,.38);transition:all .15s}
+.mt.on{background:rgba(255,255,255,.14);color:#fff}
+.ib{background:rgba(255,255,255,.04);border-radius:10px;padding:13px 14px;margin-bottom:10px;border-left:3px solid var(--ac,#c0392b)}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.pt2{aspect-ratio:1;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;background:var(--s1)}
+.pt2 img,.pt2 video{width:100%;height:100%;object-fit:cover;display:block}
+.upb{aspect-ratio:1;border-radius:8px;border:2px dashed rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:24px;color:rgba(255,255,255,.2)}
+.dz{border:2px dashed rgba(255,255,255,.15);border-radius:10px;padding:22px;text-align:center;cursor:pointer;margin-bottom:12px}
+.sk{background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.04) 75%);background-size:200% 100%;animation:shim 1.5s infinite;border-radius:8px}
+#lb{position:fixed;inset:0;z-index:500;background:#000;display:none;align-items:center;justify-content:center;padding:16px;flex-direction:column;gap:10px}
+#lb.on{display:flex}
+#sy{position:fixed;top:calc(var(--st)+8px);right:12px;z-index:100;font-size:9px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;display:none}
+#sy.ok{background:rgba(90,200,90,.15);color:#8adc8a;border:1px solid rgba(90,200,90,.2)}
+#sy.go{background:rgba(201,168,76,.2);color:var(--go);border:1px solid rgba(201,168,76,.3)}
+#sy.of{background:rgba(255,255,255,.06);color:var(--mu);border:1px solid var(--bd)}
+#sy.er{background:rgba(192,57,43,.15);color:#ff6b6b;border:1px solid rgba(192,57,43,.3)}
+@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes pi{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes s2{0%{transform:scale(3) rotate(-20deg);opacity:0}60%{transform:scale(.9) rotate(5deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes np{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shim{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes glo{0%,100%{box-shadow:0 0 6px #5adc5a}50%{box-shadow:0 0 14px #5adc5a}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="pg">
+    <div id="ldg" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;gap:16px;background:#080810">
+      <div style="font-size:40px">🌸</div>
+      <div style="font-size:16px;font-weight:700">Japó 2026</div>
+      <div style="font-size:12px;color:var(--mu)">Carregant…</div>
+      <div id="em" style="font-size:11px;color:#ff6b6b;max-width:300px;text-align:center;display:none;padding:10px;background:rgba(255,0,0,0.1);border-radius:8px;margin:10px"></div><div id="em2" style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:8px;text-align:center"></div>
+    </div>
+  </div>
+  <nav id="nv"></nav>
+</div>
+<div id="lb">
+  <button onclick="closeLB()" style="position:absolute;top:calc(var(--st)+16px);right:16px;color:#fff;font-size:28px;cursor:pointer;background:none;border:none">✕</button>
+  <img id="lbi" src="" style="max-width:100%;max-height:80vh;border-radius:8px;object-fit:contain;display:none">
+  <video id="lbv" controls style="max-width:100%;max-height:80vh;border-radius:8px;display:none"></video>
+  <div id="lbc" style="color:rgba(255,255,255,.5);font-size:12px;text-align:center"></div>
+</div>
+<div id="sy"></div>
+<div id="md"></div>
+
+
+
+
+
+
+
+<script src="app.js"></script>
+</body>
+</html>
